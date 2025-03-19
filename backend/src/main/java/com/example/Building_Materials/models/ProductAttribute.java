@@ -10,15 +10,22 @@ public class ProductAttribute {
     @Column(name = "product_attribute_id")
     private Long id;
 
-    @Column(name = "product_id")
-    private Long productId;
     private String name;
     private String value;
 
-    public ProductAttribute(Long productId, String attributeName, String attributeValue) {
-        this.productId = productId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Product product;
+
+    public ProductAttribute(Product product, String attributeName, String attributeValue) {
+        this.product = product;
         this.name = attributeName;
         this.value = attributeValue;
+    }
+
+    public void updateProduct(Product product){
+        this.product.getProductAttributes().remove(this);
+        this.product = product;
+        this.product.getProductAttributes().add(this);
     }
 
     public Long getId() {
@@ -27,14 +34,6 @@ public class ProductAttribute {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Long productId) {
-        this.productId = productId;
     }
 
     public String getName() {
@@ -51,5 +50,13 @@ public class ProductAttribute {
 
     public void setValue(String attributeValue) {
         this.value = attributeValue;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

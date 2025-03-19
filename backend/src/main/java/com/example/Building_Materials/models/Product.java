@@ -2,6 +2,9 @@ package com.example.Building_Materials.models;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "product")
 public class Product {
@@ -13,13 +16,38 @@ public class Product {
     private String name, description;
     @Column(name = "image_url")
     private String imageURL;
-    @Column(name = "manufacturer_id")
-    private Long manufacturerId;
-    @Column(name = "category_id")
-    private Long categoryId;
     @Column(name = "stock_quantity")
     private Integer stockQuantity;
     private Double price;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Manufacturer manufacturer;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Category category;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<ProductAttribute> productAttributes = new ArrayList<>();
+
+
+    public Product(String name, Manufacturer manufacturer, Category category, Double price) {
+        this.name = name;
+        this.manufacturer = manufacturer;
+        this.category = category;
+        this.price = price;
+    }
+
+    public void updateManufacturer(Manufacturer manufacturer){
+        this.manufacturer.getProducts().remove(this);
+        this.manufacturer = manufacturer;
+        this.manufacturer.getProducts().add(this);
+    }
+
+    public void updateCategory(Category category){
+        this.category.getProducts().remove(this);
+        this.category = category;
+        this.category.getProducts().add(this);
+    }
 
     public Long getId() {
         return id;
@@ -53,29 +81,6 @@ public class Product {
         this.description = description;
     }
 
-    public Long getManufacturerId() {
-        return manufacturerId;
-    }
-
-    public void setManufacturerId(Long manufacturerId) {
-        this.manufacturerId = manufacturerId;
-    }
-
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public Product(String name, Long manufacturerId, Long categoryId, Double price) {
-        this.name = name;
-        this.manufacturerId = manufacturerId;
-        this.categoryId = categoryId;
-        this.price = price;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
-
     public Integer getStockQuantity() {
         return stockQuantity;
     }
@@ -90,5 +95,29 @@ public class Product {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Manufacturer getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public List<ProductAttribute> getProductAttributes() {
+        return productAttributes;
+    }
+
+    public void setProductAttributes(List<ProductAttribute> productAttributes) {
+        this.productAttributes = productAttributes;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

@@ -13,6 +13,9 @@ public class Manufacturer {
     @Column(name = "manufacturer_id")
     private Long id;
 
+    @OneToMany(mappedBy = "manufacturer", cascade = CascadeType.ALL)
+    private List<Product> products = new ArrayList<>();
+
     private String name;
     private String country;
 
@@ -43,5 +46,13 @@ public class Manufacturer {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }
