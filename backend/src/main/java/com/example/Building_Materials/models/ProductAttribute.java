@@ -1,23 +1,24 @@
 package com.example.Building_Materials.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "product_attribute")
 public class ProductAttribute {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "product_attribute_id")
     private Long id;
 
+    @Column(name = "product_id")
     private Long productId;
+    private String name;
+    private String value;
 
     public ProductAttribute(Long productId, String attributeName, String attributeValue) {
         this.productId = productId;
-        this.attributeName = attributeName;
-        this.attributeValue = attributeValue;
+        this.name = attributeName;
+        this.value = attributeValue;
     }
 
     public Long getId() {
@@ -36,21 +37,19 @@ public class ProductAttribute {
         this.productId = productId;
     }
 
-    public String getAttributeName() {
-        return attributeName;
+    public String getName() {
+        return name;
     }
 
-    public void setAttributeName(String attributeName) {
-        this.attributeName = attributeName;
+    public void setName(String attributeName) {
+        this.name = attributeName;
     }
 
-    public String getAttributeValue() {
-        return attributeValue;
+    public String getValue() {
+        return value;
     }
 
-    public void setAttributeValue(String attributeValue) {
-        this.attributeValue = attributeValue;
+    public void setValue(String attributeValue) {
+        this.value = attributeValue;
     }
-
-    private String attributeName, attributeValue;
 }

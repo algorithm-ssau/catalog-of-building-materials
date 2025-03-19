@@ -1,17 +1,19 @@
 package com.example.Building_Materials.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "category")
 public class Category {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "category_id")
     private Long id;
 
+    private String name;
+
+    @Column(name = "parent_id")
+    private Long parentId;
 
     public Category(String name) {
         this.name = name;
@@ -21,10 +23,6 @@ public class Category {
         this.name = name;
         this.parentId = parentId;
     }
-
-
-    private String name;
-    private Long parentId;
 
     public Long getId() {
         return id;

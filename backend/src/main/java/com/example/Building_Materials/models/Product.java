@@ -1,19 +1,23 @@
 package com.example.Building_Materials.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "product")
 public class Product {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "product_id")
     private Long id;
 
-    private String name, imageURL, description;
-    private Long manufacturerId, categoryId;
+    private String name, description;
+    @Column(name = "image_url")
+    private String imageURL;
+    @Column(name = "manufacturer_id")
+    private Long manufacturerId;
+    @Column(name = "category_id")
+    private Long categoryId;
+    @Column(name = "stock_quantity")
     private Integer stockQuantity;
     private Double price;
 
