@@ -1,16 +1,20 @@
 package com.example.Building_Materials.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "manufacturer")
 public class Manufacturer {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "manufacturer_id")
     private Long id;
+
+    @OneToMany(mappedBy = "manufacturer", cascade = CascadeType.ALL)
+    private List<Product> products = new ArrayList<>();
 
     private String name;
     private String country;
@@ -42,5 +46,13 @@ public class Manufacturer {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }

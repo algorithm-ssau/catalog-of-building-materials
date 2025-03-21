@@ -1,23 +1,32 @@
 package com.example.Building_Materials.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "product_attribute")
 public class ProductAttribute {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "product_attribute_id")
     private Long id;
 
-    private Long productId;
+    private String name;
+    private String value;
 
-    public ProductAttribute(Long productId, String attributeName, String attributeValue) {
-        this.productId = productId;
-        this.attributeName = attributeName;
-        this.attributeValue = attributeValue;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", referencedColumnName = "product_id")
+    private Product product;
+
+    public ProductAttribute(Product product, String attributeName, String attributeValue) {
+        this.product = product;
+        this.name = attributeName;
+        this.value = attributeValue;
+    }
+
+    public void updateProduct(Product product){
+        this.product.getProductAttributes().remove(this);
+        this.product = product;
+        this.product.getProductAttributes().add(this);
     }
 
     public Long getId() {
@@ -28,29 +37,27 @@ public class ProductAttribute {
         this.id = id;
     }
 
-    public Long getProductId() {
-        return productId;
+    public String getName() {
+        return name;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    public void setName(String attributeName) {
+        this.name = attributeName;
     }
 
-    public String getAttributeName() {
-        return attributeName;
+    public String getValue() {
+        return value;
     }
 
-    public void setAttributeName(String attributeName) {
-        this.attributeName = attributeName;
+    public void setValue(String attributeValue) {
+        this.value = attributeValue;
     }
 
-    public String getAttributeValue() {
-        return attributeValue;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setAttributeValue(String attributeValue) {
-        this.attributeValue = attributeValue;
+    public void setProduct(Product product) {
+        this.product = product;
     }
-
-    private String attributeName, attributeValue;
 }
