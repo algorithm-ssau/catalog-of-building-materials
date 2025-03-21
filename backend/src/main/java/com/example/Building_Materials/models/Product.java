@@ -21,9 +21,11 @@ public class Product {
     private Double price;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "manufacturer_id", referencedColumnName = "manufacturer_id")
     private Manufacturer manufacturer;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     private Category category;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)

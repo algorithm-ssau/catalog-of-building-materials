@@ -15,25 +15,23 @@ public class Category {
 
     private String name;
 
-    @Column(name = "parent_id")
-    private Long parentId;
-
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Product> products = new ArrayList<>();
 
-    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "parentCategory", cascade = CascadeType.ALL)
     private List<Category> subCategories = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_id", referencedColumnName = "category_id")
     private Category parentCategory;
 
     public Category(String name) {
         this.name = name;
     }
 
-    public Category(String name, Long parentId) {
+    public Category(String name, Category parent) {
         this.name = name;
-        this.parentId = parentId;
+        this.parentCategory = parent;
     }
 
     public void updateParentCategory(Category parent){
@@ -58,12 +56,12 @@ public class Category {
         this.name = name;
     }
 
-    public Long getParentId() {
-        return parentId;
+    public Category getParentId() {
+        return parentCategory;
     }
 
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
+    public void setParentId(Category parent) {
+        this.parentCategory = parent;
     }
 
     public List<Product> getProducts() {

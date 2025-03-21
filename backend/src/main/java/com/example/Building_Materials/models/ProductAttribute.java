@@ -14,6 +14,7 @@ public class ProductAttribute {
     private String value;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", referencedColumnName = "product_id")
     private Product product;
 
     public ProductAttribute(Product product, String attributeName, String attributeValue) {
