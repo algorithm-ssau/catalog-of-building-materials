@@ -1,9 +1,13 @@
 package com.example.Building_Materials.models;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "product_attribute")
+@Data
+@NoArgsConstructor
 public class ProductAttribute {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,37 +31,5 @@ public class ProductAttribute {
         this.product.getProductAttributes().remove(this);
         this.product = product;
         this.product.getProductAttributes().add(this);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String attributeName) {
-        this.name = attributeName;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String attributeValue) {
-        this.value = attributeValue;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
     }
 }
