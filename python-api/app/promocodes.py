@@ -1,4 +1,5 @@
 import json
+from fastapi import HTTPException
 from typing import List, Optional
 from pydantic import BaseModel
 from datetime import date
@@ -40,6 +41,8 @@ def save_promos(promos, file_path: str):
 # Функция для добавления нового промокода
 def add_promo(promo: Promo, file_path: str = 'promocodes.json') -> bool:
     promos = load_promos(file_path)
+    if any(existing_promo.code == promo.code for existing_promo in promos):
+        raise HTTPException(status_code=400, detail="Promo code already exists.")
     promos.append(promo)
     save_promos(promos, file_path)
     return True
