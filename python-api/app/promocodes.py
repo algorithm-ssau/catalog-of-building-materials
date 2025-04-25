@@ -2,7 +2,10 @@ import json
 from fastapi import HTTPException
 from typing import List, Optional
 from pydantic import BaseModel
+from pathlib import Path
 from datetime import date
+
+DEFAULT_PROMO_FILE = Path('promocodes.json')
 
 # Модель промокода
 class Promo(BaseModel):
@@ -22,7 +25,7 @@ def date_converter(obj):
     raise TypeError(f"Type {obj.__class__.__name__} not serializable")
 
 # Функция для загрузки промокодов из файла
-def load_promos(file_path: str = 'promocodes.json') -> List[Promo]:
+def load_promos(file_path: Path = DEFAULT_PROMO_FILE) -> List[Promo]:
     try:
         with open(file_path, 'r') as file:
             data = json.load(file)
@@ -31,7 +34,7 @@ def load_promos(file_path: str = 'promocodes.json') -> List[Promo]:
         return []  # Если файл не найден или есть ошибка в формате, возвращаем пустой список
 
 # Функция для записи промокодов в файл
-def save_promos(promos, file_path: str):
+def save_promos(promos, file_path: Path = DEFAULT_PROMO_FILE):
     try:
         with open(file_path, "w") as file:
             json.dump([promo.dict() for promo in promos], file, indent=4, default=date_converter)
@@ -39,7 +42,7 @@ def save_promos(promos, file_path: str):
         print(f"Error saving file: {e}")
 
 # Функция для добавления нового промокода
-def add_promo(promo: Promo, file_path: str = 'promocodes.json') -> bool:
+def add_promo(promo: Promo, file_path: Path = DEFAULT_PROMO_FILE) -> bool:
     promos = load_promos(file_path)
     if any(existing_promo.code == promo.code for existing_promo in promos):
         raise HTTPException(status_code=400, detail="Promo code already exists.")
@@ -48,7 +51,7 @@ def add_promo(promo: Promo, file_path: str = 'promocodes.json') -> bool:
     return True
 
 # Функция для получения промокода по его коду
-def get_promo_by_code(code: str, file_path: str = 'promocodes.json') -> Optional[Promo]:
+def get_promo_by_code(code: str, file_path: Path = DEFAULT_PROMO_FILE) -> Optional[Promo]:
     promos = load_promos(file_path)
     for promo in promos:
         if promo.code == code:
@@ -56,7 +59,7 @@ def get_promo_by_code(code: str, file_path: str = 'promocodes.json') -> Optional
     return None
 
 # Функция для удаления промокода по его коду
-def delete_promo(code: str, file_path: str = 'promocodes.json') -> bool:
+def delete_promo(code: str, file_path: Path = DEFAULT_PROMO_FILE) -> bool:
     promos = load_promos(file_path)
     updated_promos = [promo for promo in promos if promo.code != code]
     if len(promos) == len(updated_promos):  # Если промокод не найден
@@ -65,7 +68,7 @@ def delete_promo(code: str, file_path: str = 'promocodes.json') -> bool:
     return True
 
 # Функция для обновления информации о промокоде
-def update_promo(code: str, updated_promo: Promo, file_path: str = 'promocodes.json') -> bool:
+def update_promo(code: str, updated_promo: Promo, file_path: Path = DEFAULT_PROMO_FILE) -> bool:
     promos = load_promos(file_path)
     for i, promo in enumerate(promos):
         if promo.code == code:
