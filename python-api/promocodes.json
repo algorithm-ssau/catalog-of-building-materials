@@ -8,5 +8,15 @@
             "item1",
             "item2"
         ]
+    },
+    {
+        "code": "DISCOUNT20",
+        "valid_until": "2025-12-31",
+        "uses_left": 200,
+        "discount_percent": 10.0,
+        "applicable_items": [
+            "item1",
+            "item2"
+        ]
     }
 ]

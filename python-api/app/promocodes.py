@@ -1,7 +1,7 @@
 import json
 from fastapi import HTTPException
 from typing import List, Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, Field, validator
 from pathlib import Path
 from datetime import date
 
@@ -12,8 +12,14 @@ class Promo(BaseModel):
     code: str
     valid_until: Optional[date] = None  # Дата действия необязательная
     uses_left: Optional[int] = None     # Количество активаций необязательное
-    discount_percent: float
+    discount_percent: float = Field(..., ge=0, le=100)
     applicable_items: Optional[List[str]] = []  # Список товаров необязателен
+
+    @validator('valid_until')
+    def validate_date_not_in_past(cls, value):
+        if value and value < date.today():
+            raise ValueError("valid_until date cannot be in the past.")
+        return value
 
     class Config:
         use_enum_values = True
