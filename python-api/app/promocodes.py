@@ -35,7 +35,8 @@ def load_promos(file_path: Path = DEFAULT_PROMO_FILE) -> List[Promo]:
     try:
         with open(file_path, 'r') as file:
             data = json.load(file)
-        return [Promo(**item) for item in data]
+        promos = [Promo(**item) for item in data]
+        return remove_expired_promos(promos, file_path)
     except (FileNotFoundError, json.JSONDecodeError):
         return []  # Если файл не найден или есть ошибка в формате, возвращаем пустой список
 
@@ -82,3 +83,11 @@ def update_promo(code: str, updated_promo: Promo, file_path: Path = DEFAULT_PROM
             save_promos(promos, file_path)
             return True
     return False
+
+# Удаление просроченных промокодов
+def remove_expired_promos(promos: List[Promo], file_path: Path) -> List[Promo]:
+    today = date.today()
+    valid_promos = [promo for promo in promos if not promo.valid_until or promo.valid_until >= today]
+    if len(valid_promos) != len(promos):
+        save_promos(valid_promos, file_path)  # Сохраняем только актуальные промокоды
+    return valid_promos
