@@ -8,7 +8,7 @@ import java.util.ArrayList;
 @Data
 @AllArgsConstructor
 public class ProductDTO {
-    private int id;
+    private long id;
     private String name;
     private double price;
     private String description;
