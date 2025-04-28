@@ -5,6 +5,8 @@ import com.example.Building_Materials.service.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -17,6 +19,17 @@ public class MainController {
         try{
             ProductsDTO productsDTO = databaseService.getProducts();
             return ResponseEntity.ok(productsDTO);
+        }
+        catch (Exception ex){
+            return ResponseEntity.internalServerError().body(ex.getMessage());
+        }
+    }
+
+    @PatchMapping("/buy-products")
+    public ResponseEntity<?> buyProducts(@RequestBody ProductsDTO dto){
+        try{
+            boolean result = databaseService.buyProducts(dto);
+            return ResponseEntity.ok(result);
         }
         catch (Exception ex){
             return ResponseEntity.internalServerError().body(ex.getMessage());

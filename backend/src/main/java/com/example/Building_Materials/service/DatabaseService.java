@@ -31,6 +31,7 @@ public class DatabaseService {
         Iterable<Product> products = productRepository.findAll();
         ArrayList<ProductDTO> productDTOS = new ArrayList<>();
         for(Product product: products){
+            if(product.getStockQuantity() == 0) continue;
             String category = product.getCategory().getName();
             String manufacturer = product.getManufacturer().getName();
             ArrayList<ProductAttributeDTO> attributeDTOS = new ArrayList<>();
@@ -50,5 +51,18 @@ public class DatabaseService {
             ));
         }
         return new ProductsDTO(productDTOS);
+    }
+
+    public boolean buyProducts(ProductsDTO dto){
+        for(ProductDTO productDTO: dto.getProducts()){
+            Product product = productRepository.findById(productDTO.getId()).orElseThrow();
+            if(productDTO.getStockQuantity() > product.getStockQuantity()) return false;
+        }
+        for(ProductDTO productDTO: dto.getProducts()){
+            Product product = productRepository.findById(productDTO.getId()).orElseThrow();
+            product.setStockQuantity(product.getStockQuantity() - productDTO.getStockQuantity());
+            productRepository.save(product);
+        }
+        return true;
     }
 }
