@@ -1,8 +1,8 @@
 package com.example.Building_Materials.service;
 
-import com.example.Building_Materials.dto.ProductAttributeDTO;
-import com.example.Building_Materials.dto.ProductDTO;
-import com.example.Building_Materials.dto.ProductsDTO;
+import com.example.Building_Materials.dto.*;
+import com.example.Building_Materials.models.Category;
+import com.example.Building_Materials.models.Manufacturer;
 import com.example.Building_Materials.models.Product;
 import com.example.Building_Materials.models.ProductAttribute;
 import com.example.Building_Materials.repo.CategoryRepository;
@@ -64,5 +64,41 @@ public class DatabaseService {
             productRepository.save(product);
         }
         return true;
+    }
+
+    public void addCategory(CategoryDTO dto){
+        if(categoryRepository.existsByName(dto.getName())) return;
+        if(dto.getParentId() == null) categoryRepository.save(new Category(dto.getName()));
+        else{
+            Category category = categoryRepository.findById(dto.getParentId()).orElseThrow();
+            categoryRepository.save(new Category(dto.getName(), category));
+        }
+    }
+
+    public void addManufacturer(ManufacturerDTO dto){
+        if(manufacturerRepository.existsByName(dto.getName())) return;
+        manufacturerRepository.save(new Manufacturer(dto.getName(), dto.getCountry()));
+    }
+
+    public void addAttribute(AttributeDatabaseDTO dto){
+        Product product = productRepository.findById(dto.getProductId()).orElseThrow();
+        for(ProductAttribute attribute: product.getProductAttributes()){
+            if(attribute.getName().equals(dto.getName())) return;
+        }
+        productAttributeRepository.save(new ProductAttribute(product, dto.getName(), dto.getValue()));
+    }
+
+    public void addProduct(ProductDatabaseDTO dto){
+        Category category = categoryRepository.findById(dto.getCategoryId()).orElseThrow();
+        Manufacturer manufacturer = manufacturerRepository.findById(dto.getManufacturerId()).orElseThrow();
+        productRepository.save(new Product(
+                dto.getName(),
+                dto.getDescription(),
+                manufacturer,
+                category,
+                dto.getPrice(),
+                dto.getStockQuantity(),
+                dto.getImageURL()
+        ));
     }
 }
