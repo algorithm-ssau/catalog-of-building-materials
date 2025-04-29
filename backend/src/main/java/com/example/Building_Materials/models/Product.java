@@ -36,11 +36,22 @@ public class Product {
     private List<ProductAttribute> productAttributes = new ArrayList<>();
 
 
-    public Product(String name, Manufacturer manufacturer, Category category, Double price) {
+    public Product(
+            String name,
+            String description,
+            Manufacturer manufacturer,
+            Category category,
+            Double price,
+            int stockQuantity,
+            String imageURL
+    ) {
         this.name = name;
+        this.description = description;
         this.manufacturer = manufacturer;
         this.category = category;
         this.price = price;
+        this.stockQuantity = stockQuantity;
+        this.imageURL = imageURL;
     }
 
     public void updateManufacturer(Manufacturer manufacturer){

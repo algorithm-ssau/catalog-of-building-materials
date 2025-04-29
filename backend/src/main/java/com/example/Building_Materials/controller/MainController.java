@@ -1,13 +1,10 @@
 package com.example.Building_Materials.controller;
 
-import com.example.Building_Materials.dto.ProductsDTO;
+import com.example.Building_Materials.dto.*;
 import com.example.Building_Materials.service.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class MainController {
@@ -30,6 +27,50 @@ public class MainController {
         try{
             boolean result = databaseService.buyProducts(dto);
             return ResponseEntity.ok(result);
+        }
+        catch (Exception ex){
+            return ResponseEntity.internalServerError().body(ex.getMessage());
+        }
+    }
+
+    @PostMapping("/add-category")
+    public ResponseEntity<?> addCategory(@RequestBody CategoryDTO dto){
+        try{
+            databaseService.addCategory(dto);
+            return ResponseEntity.ok().build();
+        }
+        catch (Exception ex){
+            return ResponseEntity.internalServerError().body(ex.getMessage());
+        }
+    }
+
+    @PostMapping("/add-manufacturer")
+    public ResponseEntity<?> addManufacturer(@RequestBody ManufacturerDTO dto){
+        try{
+            databaseService.addManufacturer(dto);
+            return ResponseEntity.ok().build();
+        }
+        catch (Exception ex){
+            return ResponseEntity.internalServerError().body(ex.getMessage());
+        }
+    }
+
+    @PostMapping("/add-attribute")
+    public ResponseEntity<?> addAttribute(@RequestBody AttributeDatabaseDTO dto){
+        try{
+            databaseService.addAttribute(dto);
+            return ResponseEntity.ok().build();
+        }
+        catch (Exception ex){
+            return ResponseEntity.internalServerError().body(ex.getMessage());
+        }
+    }
+
+    @PostMapping("/add-product")
+    public ResponseEntity<?> addProduct(@RequestBody ProductDatabaseDTO dto){
+        try{
+            databaseService.addProduct(dto);
+            return ResponseEntity.ok().build();
         }
         catch (Exception ex){
             return ResponseEntity.internalServerError().body(ex.getMessage());
