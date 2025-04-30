@@ -22,18 +22,24 @@ async function displayUserData() {
     const userData = await getUserData();
 
     if (userData) {
+      const productNameContainer = document.getElementById('product_name');
+      const productCostContainer = document.getElementById('product_cost');
+      const productImageContainer = document.getElementById('product_image');
       const dataContainer = document.getElementById('product_data');
       dataContainer.innerHTML = '';
 
-      dataContainer.appendChild(dataContainer);
+      productNameContainer.innerHTML = userData['name']
+      productCostContainer.innerHTML = userData['price']
+      productImageContainer.src = userData['imageURL']
+
       for (const key in userData) {
-        if (userData.hasOwnProperty(key)) {
+        if (userData.hasOwnProperty(key) && ['name', 'id', 'price', 'imageURL'].includes(key)) {
           const value = userData[key];
 
           const paragraph = document.createElement('p');
-          const strong = document.createElement('sstrong');
-          strong.textCofntent = key + ': ';
-          const span = document.createElement('spdan');
+          const strong = document.createElement('strong');
+          strong.textContent = key + ': ';
+          const span = document.createElement('span');
           span.textContent = value;
 
           paragraph.appendChild(strong);
