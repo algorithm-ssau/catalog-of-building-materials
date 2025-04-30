@@ -22,13 +22,37 @@
                     <img style="height: 340px" src="https://digital-basket-01.wbbasket.ru/vol1/019/57426884cb79b1eb4b174b85081710bf/1920.jpg">
                     <div style="width: 79px;"></div>
                     <div style = "flex-direction: column;">
-                        <p><b>Длина:</b> 25 м</p>
-                        <p><b>Ширина:</b> 1.06 м</p>
-                        <p><b>Основа:</b> флизелин</p>
-                        <p><b>Уход:</b> сухая чистка</p>
-                        <p><b>Цвет:</b> белый</p>
-                        <p><b>Фактура:</b> рельефная</p>
-                        <p><b>Вес нетто:</b> 3.7 кг</p>
+                        <div style = "flex-direction: row; display: flex;">
+                            <b>Длина: </b>
+                            <p id="length">25</p>
+                            <p>м</p>
+                        </div>
+                        <div style = "flex-direction: row; display: flex;">
+                            <b>Ширина: </b>
+                            <p id="width">1.06</p>
+                            <p>м</p>
+                        </div>
+                        <div style = "flex-direction: row; display: flex;">
+                            <b>Основа:</b>
+                            <p id="material">флизелин</p>
+                        </div>
+                        <div style = "flex-direction: row; display: flex;">
+                            <b>Уход: </b>
+                            <p id="caretaking">сухая чистка</p>
+                        </div>
+                        <div style = "flex-direction: row; display: flex;">
+                            <b>Цвет: </b>
+                            <p id="color">белый</p>
+                        </div>
+                        <div style = "flex-direction: row; display: flex;">
+                            <b>Фактура: </b>
+                            <p id="structure">рельефная</p>
+                        </div>
+                        <div style = "flex-direction: row; display: flex;">
+                            <b>Масса нетто: </b>
+                            <p id="mass">3.7</p>
+                            <p>кг</p>
+                        </div>
                     </div>
                     <div style="width: 79px;"></div>
                     <div style = "flex-direction: column; display: flex; height:100%; align-items: end;">
@@ -68,5 +92,6 @@
             </div>
         </footer>
     </div>
+    <script src="../domain/product.js"></script>
 </body>
 </html>
