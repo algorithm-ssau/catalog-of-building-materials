@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+.container {
+    max-width: 1850px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.but1 {
+    position: absolute;
+    width: 308px;
+    top: 18px;
+    left: 40px;
+    font-family: "Roboto", Helvetica;
+    font-weight: 500;
+    color: #000000;
+    font-size: 36px;
+    letter-spacing: -1.80px;
+    line-height: normal;
+    text-decoration: none;
+  }
+
+.but2 {
+    position: absolute;
+    width: 132px;
+    top: 18px;
+    left: 1736px;
+    font-family: "Roboto", Helvetica;
+    font-weight: 500;
+    color: #000000;
+    font-size: 36px;
+    letter-spacing: -1.80px;
+    line-height: normal;
+    text-decoration: none;
+}
+
+.ln {
+    margin-top: 150px;
+    max-width: 1850px;
+    width: 100%;
+    margin-left: 35px;
+    margin-right: 35px;
+    height: 1px;
+}
+
+.ln1 {
+    margin-top: 13px;
+    max-width: 1850px;
+
+    margin-left: 1468px;
+    margin-right: 452px;
+    height: 1px;
+}
+
+.text-container {
+    display: flex;          /* Включаем flex-контейнер */
+    
+    margin-top: 60px;       /* Общий отступ сверху */
+    padding: 0 35px;        /* Отступы слева и справа */
+    width: 100%;           /* Ширина контейнера */
+    box-sizing: border-box; /* Учитываем padding в ширине */
+}
+
+.t1 {
+    font-family: "Roboto", Helvetica;
+    font-weight: 500;
+    color: #000000;
+    font-size: 64px;
+    letter-spacing: -1.80px;
+    line-height: normal;
+    margin-left: 209px;
+}
+
+.t2 {
+    font-family: "Roboto", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 32px;
+    letter-spacing: -0.64px;
+    line-height: normal;
+    padding-left: 525px;
+    
+}
+
+.total-container {
+    display: flex;
+    align-items: center;           /* Выравнивает по вертикали */
+    margin-top: 120px;             /* Общий отступ сверху */
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .but {
+    display: inline-flex;
+    align-items: center;
+    width: 598px;
+    height: 88px;
+    border: 1px solid #000;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+    font-family: "Roboto", Helvetica;
+    font-weight: 500;
+    font-size: 48px;
+    letter-spacing: -0.96px;
+    padding-left: 53px;
+    transition: background 0.3s;
+    margin-left: 239px;
+  }
+  
+  .t3 {
+    font-family: "Roboto", Helvetica;
+    font-weight: 500;
+    color: #000000;
+    font-size: 48px;
+    letter-spacing: -1.80px;
+    white-space: nowrap; 
+    margin-left: 603px;
+  }
