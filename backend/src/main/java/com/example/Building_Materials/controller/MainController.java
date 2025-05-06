@@ -22,8 +22,30 @@ public class MainController {
         }
     }
 
+    @PostMapping("/cart")
+    public ResponseEntity<?> cart(@RequestBody ProductIdListDTO dto){
+        try{
+            ProductsDTO productsDTO = databaseService.getProductsById(dto);
+            return ResponseEntity.ok(productsDTO);
+        }
+        catch (Exception ex){
+            return ResponseEntity.internalServerError().body(ex.getMessage());
+        }
+    }
+
+    @GetMapping("/product/{productId}")
+    public ResponseEntity<?> getProduct(@PathVariable long productId){
+        try{
+            ProductDTO productDTO = databaseService.getProduct(productId);
+            return ResponseEntity.ok(productDTO);
+        }
+        catch (Exception ex){
+            return ResponseEntity.internalServerError().body(ex.getMessage());
+        }
+    }
+
     @PatchMapping("/buy-products")
-    public ResponseEntity<?> buyProducts(@RequestBody ProductsDTO dto){
+    public ResponseEntity<?> buyProducts(@RequestBody CartProductsDTO dto){
         try{
             boolean result = databaseService.buyProducts(dto);
             return ResponseEntity.ok(result);

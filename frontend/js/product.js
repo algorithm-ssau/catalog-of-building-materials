@@ -1,9 +1,13 @@
-const url = 'https://example.com/api/user/123'; // Замените на свой URI
+let productId = parseInt(new URLSearchParams(window.location.search).get('productId'));
+
+const url = `http://127.0.0.1:8080/product/${productId}`;
 
 // Функция для выполнения GET-запроса
 async function getUserData() {
   try {
-    const response = await fetch(url);
+    const response = await fetch(url, {method: "GET", headers: {
+        'Content-Type': 'application/json;charset=utf-8'
+    }});
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -22,37 +26,56 @@ async function displayUserData() {
     const userData = await getUserData();
 
     if (userData) {
-      const productNameContainer = document.getElementById('product_name');
-      const productCostContainer = document.getElementById('product_cost');
-      const productImageContainer = document.getElementById('product_image');
-      const dataContainer = document.getElementById('product_data');
-      dataContainer.innerHTML = '';
+        const productNameContainer = document.getElementById('product_name');
+        const productCostContainer = document.getElementById('product_cost');
+        const productImageContainer = document.getElementById('product_image');
+        const dataContainer = document.getElementById('product_data');
+        dataContainer.innerHTML = '';
 
-      productNameContainer.innerHTML = userData['name']
-      productCostContainer.innerHTML = userData['price']
-      productImageContainer.src = userData['imageURL']
+        productNameContainer.innerHTML = userData['name'];
+        productCostContainer.innerHTML = userData['price'] + 'руб.';
+        productImageContainer.src = userData['imageURL'];
 
-      for (const key in userData) {
-        if (userData.hasOwnProperty(key) && ['name', 'id', 'price', 'imageURL'].includes(key)) {
-          const value = userData[key];
+        str = `<p><b>Описание:</b> ${userData.description}</p>`+
+            `<p><b>Производитель:</b> ${userData.manufacturer}</p>`+
+            `<p><b>Категория:</b> ${userData.category}</p>`;
+        
 
-          const paragraph = document.createElement('p');
-          const strong = document.createElement('strong');
-          strong.textContent = key + ': ';
-          const span = document.createElement('span');
-          span.textContent = value;
+        userData.attributes.forEach(attribute => {
+            str += `<p><b>${attribute.name}:</b> ${attribute.value}</p>`
+        });    
 
-          paragraph.appendChild(strong);
-          paragraph.appendChild(span);
-          dataContainer.appendChild(paragraph);
+        dataContainer.insertAdjacentHTML('beforeend', str);
+
+        if(userData.stockQuantity == 0) document.querySelector('.button').hidden = true;
+
+        document.querySelector('.button').onclick = function(e){
+            let storage = localStorage.getItem('cart');
+            let array = [];
+            if(storage == null) {
+              array.push(productId);
+              localStorage.setItem('cart', JSON.stringify(array));
+            }
+            else{
+              array = JSON.parse(localStorage.getItem('cart'));
+              let flag = false;
+              array.forEach(elem=>{
+                if(elem == productId) flag = true;
+              });
+              if(!flag) array.push(productId);
+              localStorage.setItem('cart', JSON.stringify(array));
+            }
+            e.currentTarget.querySelector('.button__text').innerHTML = 'Добавлено';
+            e.currentTarget.onclick = null;
         }
-      }
+        
+      
     } else {
       const dataContainer = document.getElementById('dataContainer');
       dataContainer.innerHTML = '<p>Не удалось загрузить данные.</p>';
     }
   }
 
-  document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     displayUserData();
-  });
+});
