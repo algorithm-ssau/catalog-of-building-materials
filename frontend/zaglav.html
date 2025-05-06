@@ -22,7 +22,7 @@
     <head class="head">
         <div class="container">
             <a href="#" class="but1" id="contactsBtn">Контакты</a>
-            <a href="#" class="but2">Корзина</a>
+            <a href="corzina.html" class="but2">Корзина</a>
         </div>
         <div class="name">
             <p class="p">
@@ -47,19 +47,19 @@
     </head>
     <main>
         <div class="tovar">
-            <a href="#" class="t1">Все</a>
-            <a href="#" class="t2">Лакокрасочные</a>
-            <a href="#" class="t3">Обои</a>
-            <a href="#" class="t4">Плитка</a>
-            <a href="#" class="t5">Клеи</a>
-            <a href="#" class="t6">Пол</a>
-            <a href="#" class="t7">Смеси</a>
+            <a href="catalog.html?products=all" class="t1">Все</a>
+            <a href="catalog.html?products=paint" class="t2">Лакокрасочные</a>
+            <a href="catalog.html?products=wallpaper" class="t3">Обои</a>
+            <a href="catalog.html?products=tile" class="t4">Плитка</a>
+            <a href="catalog.html?products=glue" class="t5">Клеи</a>
+            <a href="catalog.html?products=floor" class="t6">Пол</a>
+            <a href="catalog.html?products=mixtures" class="t7">Смеси</a>
         </div>
         <div class="ln"><img src="img/Line 1.png" class="line"></div>
         <div class="im1"><a href="#" class="t8">Лакокрасочные</a><a href="#"><img src="img/image 2.png" class="image1"></a><a href="#"><img src="img/image 3.png" class="image2"></a><a href="#" class="t9">Обои</a></div>
         <div class="ln1"><img src="img/Line 1.png" class="line"></div>
         <div class="im2"><a href="#"><img src="img/image 8 (1).png" class="image3"></a><a href="#" class="t10">Плитка</a></div>
-        <div class="ln1"><img src="Line 1.png" class="line"></div>
+        <div class="ln1"><img src="img/Line 1.png" class="line"></div>
         <div class="im3"><a href="#"><img src="img/image 6.png" class="image4"></a><a href="#" class="t11">Клеи</a><a href="#"><img src="img/image 4 (2).png" class="image5"></a><a href="#" class="t12">Пол</a></div>
         <div class="ln1"><img src="img/Line 1.png" class="line"></div>
         <div class="im4"><a href="#" class="t13">Смеси</a><a href="#"><img src="img/image 7.png" class="image6"></a></div>
@@ -76,7 +76,28 @@
         </div>
     </footer>
     
-    <script src="js/zaglav.js"></script>
+    <script>
+        const contactsBtn = document.getElementById('contactsBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        const contactsPanel = document.getElementById('contactsPanel');
+        const overlay = document.getElementById('overlay');
+        
+        contactsBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            contactsPanel.classList.add('active');
+            overlay.classList.add('active');
+        });
+        
+        closeBtn.addEventListener('click', function() {
+            contactsPanel.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+        
+        overlay.addEventListener('click', function() {
+            contactsPanel.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+    </script>
 </body>
 
 </html>
