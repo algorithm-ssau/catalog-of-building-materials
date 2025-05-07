@@ -27,8 +27,10 @@
         <span class="total-price" id="totalPrice">0 ₽</span>
           <div class="promo-cont">
               <input class="promo-inp" type="text" id="promoInput" placeholder="Введите промокод">
-              <button class="promo-btn">Применить</button>
+              <button class="promo-btn" onclick="checkPromo()">Применить</button>
           </div>
+
+            <div id="promoResult"></div>
         <a href="#"><button class="checkout-btn">Оформить заказ</button></a>
       </div>
     </div>
