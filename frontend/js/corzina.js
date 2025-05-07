@@ -139,6 +139,14 @@ getProducts();
     });
   }
 
+
+function shakeInput() {
+  const input = document.getElementById("promoInput");
+  input.classList.add("shake");
+  setTimeout(() => input.classList.remove("shake"), 300);
+}
+
+
 async function checkPromo() {
   const code = document.getElementById("promoInput").value;
   const resultDiv = document.getElementById("promoResult");
@@ -147,6 +155,7 @@ async function checkPromo() {
 
   if (!code) {
     resultDiv.textContent = "Введите промокод.";
+    shakeInput();
     resultDiv.classList.add('visible');
     return;
   }
@@ -160,9 +169,11 @@ async function checkPromo() {
     } else {
       const err = await response.json();
       resultDiv.textContent = err.message || "Промокод не найден.";
+      shakeInput();
     }
   } catch (error) {
     resultDiv.textContent = "Ошибка при подключении к серверу.";
+    shakeInput();
   }
   setTimeout(() => {
     resultDiv.classList.add('visible');
