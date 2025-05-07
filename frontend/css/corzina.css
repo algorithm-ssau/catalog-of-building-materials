@@ -147,6 +147,7 @@ body {
     cursor: pointer;
     text-align: center;
   }
+
   
   .checkout-btn:hover {
     background: #f0f0f0;
@@ -259,3 +260,11 @@ body {
     color: #ffffff;
 }
 
+#promoResult {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+#promoResult.visible {
+  opacity: 1;
+}

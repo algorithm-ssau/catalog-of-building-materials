@@ -143,8 +143,11 @@ async function checkPromo() {
   const code = document.getElementById("promoInput").value;
   const resultDiv = document.getElementById("promoResult");
 
+  resultDiv.classList.remove('visible');
+
   if (!code) {
     resultDiv.textContent = "Введите промокод.";
+    resultDiv.classList.add('visible');
     return;
   }
 
@@ -161,5 +164,8 @@ async function checkPromo() {
   } catch (error) {
     resultDiv.textContent = "Ошибка при подключении к серверу.";
   }
+  setTimeout(() => {
+    resultDiv.classList.add('visible');
+  }, 10);
 }
   
