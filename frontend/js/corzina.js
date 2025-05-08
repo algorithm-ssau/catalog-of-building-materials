@@ -138,4 +138,45 @@ getProducts();
       });
     });
   }
+
+
+function shakeInput() {
+  const input = document.getElementById("promoInput");
+  input.classList.add("shake");
+  setTimeout(() => input.classList.remove("shake"), 300);
+}
+
+
+async function checkPromo() {
+  const code = document.getElementById("promoInput").value;
+  const resultDiv = document.getElementById("promoResult");
+
+  resultDiv.classList.remove('visible');
+
+  if (!code) {
+    resultDiv.textContent = "Введите промокод.";
+    shakeInput();
+    resultDiv.classList.add('visible');
+    return;
+  }
+
+  try {
+    const response = await fetch(`http://127.0.0.1:8000/promocodes/${code}`);
+
+    if (response.ok) {
+      const data = await response.json();
+      resultDiv.textContent = `Скидка: ${data.discount_percent}%`;
+    } else {
+      const err = await response.json();
+      resultDiv.textContent = err.message || "Промокод не найден.";
+      shakeInput();
+    }
+  } catch (error) {
+    resultDiv.textContent = "Ошибка при подключении к серверу.";
+    shakeInput();
+  }
+  setTimeout(() => {
+    resultDiv.classList.add('visible');
+  }, 10);
+}
   

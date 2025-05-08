@@ -4,6 +4,7 @@ from typing import List, Optional
 from pydantic import BaseModel, Field, validator
 from pathlib import Path
 from datetime import date
+import os
 
 DEFAULT_PROMO_FILE = Path('promocodes.json')
 
