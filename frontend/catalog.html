@@ -7,6 +7,16 @@
     <title>Каталог</title>
 </head>
 <body>
+     <!-- Прелоадер с валиком -->
+<div id="preloader-wrapper">
+    <div class="roller-container">
+      <div class="roller">
+        <div class="handle"></div>
+      </div>
+      <div class="paint"></div>
+    </div>
+  </div>
+
     <div class="wrapper">
         <header>
             <div class="header__container">
@@ -81,6 +91,14 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        window.addEventListener("load", () => {
+          const preloader = document.getElementById("preloader-wrapper");
+          preloader.classList.add("hidden");
+        });
+      </script>
+      
     <script src="js/catalog.js"></script>
 </body>
 </html>

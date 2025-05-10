@@ -7,11 +7,35 @@
   <title>Корзина</title>
 </head>
 <body>
-    <div class="container header-buttons">
-        <a href="zaglav.html" class="but1" id="contactsBtn">На главную</a>
-        <a href="#" class="but2">Контакты</a>
-      </div>
- 
+ <!-- Прелоадер с валиком -->
+<div id="preloader-wrapper">
+  <div class="roller-container">
+    <div class="roller">
+      <div class="handle"></div>
+    </div>
+    <div class="paint"></div>
+  </div>
+</div>
+
+  <div class="container header-buttons">
+        <a href="zaglav.html" class="but1" >На главную</a>
+        <a href="#" class="but2" id="contactsBtn">Контакты</a>
+     </div>
+ <!-- Панель контактов и затемнение -->
+<div class="overlay" id="overlay"></div>
+
+<div class="contacts-panel" id="contactsPanel">
+  <span class="close-btn" id="closeBtn">×</span>
+  <div class="contacts-content">
+    <h3>Наши контакты</h3>
+    <p>Телефон: +7 (123) 456-78-90</p>
+    <p>Email: info@example.com</p>
+    <p>Адрес: г. Самара, ул. Примерная, 123</p>
+    <p>Часы работы: Пн-Пт 9:00-18:00</p>
+  </div>
+</div>
+
+
   <div class="cart-wrapper">
     <div class="cart-items" id="cartItems"></div>
   
@@ -34,7 +58,37 @@
       </div>
     </div>
   </div>
+  <!-- Кнопка для открытия игры -->
+<div class="kirp">
+  <a href="#" id="gameLauncher"><img src="img/kirpich.png" class="pashalka"></a>
+</div>
 
+<!-- Модальное окно для игры -->
+<div id="gameModal" class="modal">
+  <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="game-container">
+          <!-- Весь ваш HTML игры здесь -->
+          <h1>Собери стену за 1 минуту!</h1>
+          <p>Кликай на кирпичи, чтобы построить стену и получить скидку!</p>
+          
+          <div id="timer">Время: 60 сек</div>
+          <div id="score">Кирпичей: 0</div>
+          
+          <button id="start-btn">Начать игру</button>
+          <div id="game-area"></div>
+          
+          <div id="result">
+              <h2>Поздравляем!</h2>
+              <p>Вы собрали <span id="final-score">0</span> кирпичей!</p>
+              <p>Ваш промокод на скидку:</p>
+              <div id="promo-code">СТРОЙКА10</div>
+              <p>Используйте его при заказе!</p>
+              <button id="restart-btn">Играть снова</button>
+          </div>
+      </div>
+  </div>
+</div>
   <footer class="footer">
     <div class="wee">Над проектом работали:</p>
     <div class="fio">
@@ -45,7 +99,13 @@
         <h6>Сгибнев В.С.</h6>
     </div>
 </footer>
-  
+<script>
+  window.addEventListener("load", () => {
+    const preloader = document.getElementById("preloader-wrapper");
+    preloader.classList.add("hidden");
+  });
+</script>
+
   <script src="js/corzina.js"></script>
 </body>
 </html>
