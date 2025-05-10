@@ -7,11 +7,21 @@
     <title>Каталог</title>
 </head>
 <body>
+     <!-- Прелоадер с валиком -->
+<div id="preloader-wrapper">
+    <div class="roller-container">
+      <div class="roller">
+        <div class="handle"></div>
+      </div>
+      <div class="paint"></div>
+    </div>
+  </div>
+
     <div class="wrapper">
         <header>
             <div class="header__container">
-                <a href="#" class="header__link">Контакты</a>
-                <a href="#" class="header__link">Корзина</a>
+                <a href="zaglav.html" class="header__link">На главную</a>
+                <a href="corzina.html" class="header__link">Корзина</a>
             </div>
         </header>
         <div class="main">
@@ -20,61 +30,38 @@
                     <div class="nav">
                         <p class="nav__title">Список товаров</p>
                         <div class="nav__row">
-                            <p class="row__title">Лакокрасочные</p>
+                            <a class="row__title" href="catalog.html?products=paint">Лакокрасочные</a>
                             <img src="img/Expand Arrow.png" alt="" class="nav__btn">
                         </div>
                         <div class="nav__row">
-                            <p class="row__title">Обои</p>
+                            <a class="row__title" href="catalog.html?products=wallpaper">Обои</a>
                             <img src="img/Expand Arrow.png" alt="" class="nav__btn">
                         </div>
                         <div class="nav__row">
-                            <p class="row__title">Плитка</p>
+                            <a class="row__title" href="catalog.html?products=tile">Плитка</a>
                             <img src="img/Expand Arrow.png" alt="" class="nav__btn">
                         </div>
                         <div class="nav__row">
-                            <p class="row__title">Клей</p>
+                            <a class="row__title" href="catalog.html?products=glue">Клей</a>
                             <img src="img/Expand Arrow.png" alt="" class="nav__btn">
                         </div>
                         <div class="nav__row">
-                            <p class="row__title">Пол</p>
+                            <a class="row__title" href="catalog.html?products=floor">Пол</a>
                             <img src="img/Expand Arrow.png" alt="" class="nav__btn">
                         </div>
                         <div class="nav__row">
-                            <p class="row__title">Смеси</p>
+                            <a class="row__title" href="catalog.html?products=mixtures">Смеси</a>
                             <img src="img/Expand Arrow.png" alt="" class="nav__btn">
                         </div>
                     </div>
                     <div class="catalog">
+                        <!--
                         <div class="product">
                             <div class="img"></div>
                             <p class="title">Обои1</p>
                             <p class="price">543 р.</p>
                         </div>
-                        <div class="product">
-                            <div class="img"></div>
-                            <p class="title">Обои1</p>
-                            <p class="price">543 р.</p>
-                        </div>
-                        <div class="product">
-                            <div class="img"></div>
-                            <p class="title">Обои1</p>
-                            <p class="price">543 р.</p>
-                        </div>
-                        <div class="product">
-                            <div class="img"></div>
-                            <p class="title">Обои1</p>
-                            <p class="price">543 р.</p>
-                        </div>
-                        <div class="product">
-                            <div class="img"></div>
-                            <p class="title">Обои1</p>
-                            <p class="price">543 р.</p>
-                        </div>
-                        <div class="product">
-                            <div class="img"></div>
-                            <p class="title">Обои1</p>
-                            <p class="price">543 р.</p>
-                        </div>
+                        -->
                     </div>
                 </div>
             </div>
@@ -104,5 +91,14 @@
             </div>
         </footer>
     </div>
+
+    <script>
+        window.addEventListener("load", () => {
+          const preloader = document.getElementById("preloader-wrapper");
+          preloader.classList.add("hidden");
+        });
+      </script>
+      
+    <script src="js/catalog.js"></script>
 </body>
 </html>

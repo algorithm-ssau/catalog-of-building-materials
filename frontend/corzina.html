@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="css/corzina.css" />
+  <title>Корзина</title>
+</head>
+<body>
+ <!-- Прелоадер с валиком -->
+<div id="preloader-wrapper">
+  <div class="roller-container">
+    <div class="roller">
+      <div class="handle"></div>
+    </div>
+    <div class="paint"></div>
+  </div>
+</div>
+
+  <div class="container header-buttons">
+        <a href="zaglav.html" class="but1" >На главную</a>
+        <a href="#" class="but2" id="contactsBtn">Контакты</a>
+     </div>
+ <!-- Панель контактов и затемнение -->
+<div class="overlay" id="overlay"></div>
+
+<div class="contacts-panel" id="contactsPanel">
+  <span class="close-btn" id="closeBtn">×</span>
+  <div class="contacts-content">
+    <h3>Наши контакты</h3>
+    <p>Телефон: +7 (123) 456-78-90</p>
+    <p>Email: info@example.com</p>
+    <p>Адрес: г. Самара, ул. Примерная, 123</p>
+    <p>Часы работы: Пн-Пт 9:00-18:00</p>
+  </div>
+</div>
+
+
+  <div class="cart-wrapper">
+    <div class="cart-items" id="cartItems"></div>
+  
+    <div class="cart-summary">
+      <div class="address-block">
+        <p class="address-title">Адрес склада:</p>
+        <p class="address-text">г. Самара ул. Московское шоссе, 34</p>
+      </div>
+  
+      <div class="cart-footer">
+        <p class="total-goods"><b>Количество товаров:</b> <span id="itemCount">0</span></p>
+        <span class="total-label">ИТОГО:</span>
+        <span class="total-price" id="totalPrice">0 ₽</span>
+          <div class="promo-cont">
+              <input class="promo-inp" type="text" id="promoInput" placeholder="Введите промокод">
+              <button class="promo-btn" onclick="checkPromo()">Применить</button>
+          </div>
+            <p id="promoResult"></p>
+        <a href="#"><button class="checkout-btn">Оформить заказ</button></a>
+      </div>
+    </div>
+  </div>
+  <!-- Кнопка для открытия игры -->
+<div class="kirp">
+  <a href="#" id="gameLauncher"><img src="img/kirpich.png" class="pashalka"></a>
+</div>
+
+<!-- Модальное окно для игры -->
+<div id="gameModal" class="modal">
+  <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="game-container">
+          <!-- Весь ваш HTML игры здесь -->
+          <h1>Собери стену за 1 минуту!</h1>
+          <p>Кликай на кирпичи, чтобы построить стену и получить скидку!</p>
+          
+          <div id="timer">Время: 60 сек</div>
+          <div id="score">Кирпичей: 0</div>
+          
+          <button id="start-btn">Начать игру</button>
+          <div id="game-area"></div>
+          
+          <div id="result">
+              <h2>Поздравляем!</h2>
+              <p>Вы собрали <span id="final-score">0</span> кирпичей!</p>
+              <p>Ваш промокод на скидку:</p>
+              <div id="promo-code">СТРОЙКА10</div>
+              <p>Используйте его при заказе!</p>
+              <button id="restart-btn">Играть снова</button>
+          </div>
+      </div>
+  </div>
+</div>
+  <footer class="footer">
+    <div class="wee">Над проектом работали:</p>
+    <div class="fio">
+        <h6>Алексашин А.С.</h6>
+        <h6>Архипова Д.А.</h6>
+        <h6>Красюк А.М.</h6>
+        <h6>Петрова У.А.</h6>
+        <h6>Сгибнев В.С.</h6>
+    </div>
+</footer>
+<script>
+  window.addEventListener("load", () => {
+    const preloader = document.getElementById("preloader-wrapper");
+    preloader.classList.add("hidden");
+  });
+</script>
+
+  <script src="js/corzina.js"></script>
+</body>
+</html>
