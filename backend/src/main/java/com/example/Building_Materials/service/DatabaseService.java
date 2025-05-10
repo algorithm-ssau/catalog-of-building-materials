@@ -53,14 +53,14 @@ public class DatabaseService {
         return new ProductsDTO(productDTOS);
     }
 
-    public boolean buyProducts(ProductsDTO dto){
-        for(ProductDTO productDTO: dto.getProducts()){
-            Product product = productRepository.findById(productDTO.getId()).orElseThrow();
-            if(productDTO.getStockQuantity() > product.getStockQuantity()) return false;
+    public boolean buyProducts(CartProductsDTO dto){
+        for(CartProductDTO productDTO: dto.getProducts()){
+            Product product = productRepository.findById(productDTO.getProductId()).orElseThrow();
+            if(productDTO.getQuantity() > product.getStockQuantity()) return false;
         }
-        for(ProductDTO productDTO: dto.getProducts()){
-            Product product = productRepository.findById(productDTO.getId()).orElseThrow();
-            product.setStockQuantity(product.getStockQuantity() - productDTO.getStockQuantity());
+        for(CartProductDTO productDTO: dto.getProducts()){
+            Product product = productRepository.findById(productDTO.getProductId()).orElseThrow();
+            product.setStockQuantity(product.getStockQuantity() - productDTO.getQuantity());
             productRepository.save(product);
         }
         return true;
@@ -100,5 +100,46 @@ public class DatabaseService {
                 dto.getStockQuantity(),
                 dto.getImageURL()
         ));
+    }
+
+    public ProductDTO getProduct(long productId){
+        Product product = productRepository.findById(productId).orElseThrow();
+        ArrayList<ProductAttributeDTO> attributeDTOS = new ArrayList<>();
+        for(ProductAttribute attribute: product.getProductAttributes()){
+            attributeDTOS.add(new ProductAttributeDTO(attribute.getName(), attribute.getValue()));
+        }
+        return new ProductDTO(
+                product.getId(),
+                product.getName(),
+                product.getPrice(),
+                product.getDescription(),
+                product.getManufacturer().getName(),
+                product.getStockQuantity(),
+                product.getCategory().getName(),
+                product.getImageURL(),
+                attributeDTOS
+        );
+    }
+
+    public ProductsDTO getProductsById(ProductIdListDTO dto){
+        ArrayList<ProductDTO> result = new ArrayList<>();
+        for(long id: dto.getList()){
+            Product product = productRepository.findById(id).orElseThrow();
+            if(product.getStockQuantity() == 0) continue;
+            String category = product.getCategory().getName();
+            String manufacturer = product.getManufacturer().getName();
+            result.add(new ProductDTO(
+                    product.getId(),
+                    product.getName(),
+                    product.getPrice(),
+                    product.getDescription(),
+                    manufacturer,
+                    product.getStockQuantity(),
+                    category,
+                    product.getImageURL(),
+                    null
+            ));
+        }
+        return new ProductsDTO(result);
     }
 }
