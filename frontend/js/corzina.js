@@ -309,9 +309,9 @@ document.addEventListener('DOMContentLoaded', function() {
       finalScoreElement.textContent = score;
       
       // Генерация промокода
-      let promoCode = 'СТРОЙКА5';
-      if (score >= 20) promoCode = 'СТРОЙКА7';
-      if (score >= 40) promoCode = 'СТРОЙКА10';
+      let promoCode = 'STROYKA5';
+      if (score >= 20) promoCode = 'STROYKA7';
+      if (score >= 40) promoCode = 'STROYKA10';
       
       promoCodeElement.textContent = promoCode;
       resultElement.style.display = 'block';

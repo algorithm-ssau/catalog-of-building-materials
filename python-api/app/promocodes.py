@@ -6,7 +6,7 @@ from pathlib import Path
 from datetime import date
 import os
 
-DEFAULT_PROMO_FILE = Path('promocodes.json')
+DEFAULT_PROMO_FILE = Path('../promocodes.json')
 
 # Модель промокода
 class Promo(BaseModel):
