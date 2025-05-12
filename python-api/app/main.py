@@ -1,7 +1,7 @@
 from fastapi import FastAPI, status
 from fastapi.responses import JSONResponse
 from typing import Optional
-from .promocodes import add_promo, get_promo_by_code, delete_promo, update_promo, Promo
+from promocodes import add_promo, get_promo_by_code, delete_promo, update_promo, Promo
 from fastapi.middleware.cors import CORSMiddleware
 
 

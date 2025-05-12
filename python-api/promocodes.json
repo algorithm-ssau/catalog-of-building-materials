@@ -1,9 +1,30 @@
 [
     {
         "code": "string",
-        "valid_until": "2025-05-07",
+        "valid_until": "2025-05-30",
         "uses_left": 0,
         "discount_percent": 100.0,
+        "applicable_items": []
+    },
+    {
+        "code": "STROYKA5",
+        "valid_until": "2025-05-30",
+        "uses_left": 1000000,
+        "discount_percent": 5.0,
+        "applicable_items": []
+    },
+    {
+        "code": "STROYKA7",
+        "valid_until": "2025-05-30",
+        "uses_left": 1000000,
+        "discount_percent": 7.0,
+        "applicable_items": []
+    },
+    {
+        "code": "STROYKA10",
+        "valid_until": "2025-05-30",
+        "uses_left": 1000000,
+        "discount_percent": 10.0,
         "applicable_items": []
     }
 ]

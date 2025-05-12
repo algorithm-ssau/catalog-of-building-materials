@@ -20,7 +20,7 @@ async function getProducts(){
             if(products == 'all'){
                 let str = 
                 '<div class="product">'+
-                    '<div class="img"></div>'+
+                    `<img class="img" src="${element.imageURL}"></img>`+
                     `<p class="title">${element.name}</p>`+
                     `<p class="price">${element.price} р.</p>`+
                     `<p class="product_id" style="display: none;">${element.id}</p>`+
@@ -31,7 +31,7 @@ async function getProducts(){
                 if(element.category == 'Лакокрасочные'){
                     let str = 
                     '<div class="product">'+
-                        '<div class="img"></div>'+
+                        `<img class="img" src="${element.imageURL}"></img>`+
                         `<p class="title">${element.name}</p>`+
                         `<p class="price">${element.price} р.</p>`+
                         `<p class="product_id" style="display: none;">${element.id}</p>`+
@@ -43,7 +43,7 @@ async function getProducts(){
                 if(element.category == 'Обои'){
                     let str = 
                     '<div class="product">'+
-                        '<div class="img"></div>'+
+                        `<img class="img" src="${element.imageURL}"></img>`+
                         `<p class="title">${element.name}</p>`+
                         `<p class="price">${element.price} р.</p>`+
                         `<p class="product_id" style="display: none;">${element.id}</p>`+
@@ -55,7 +55,7 @@ async function getProducts(){
                 if(element.category == 'Плитка'){
                     let str = 
                     '<div class="product">'+
-                        '<div class="img"></div>'+
+                        `<img class="img" src="${element.imageURL}"></img>`+
                         `<p class="title">${element.name}</p>`+
                         `<p class="price">${element.price} р.</p>`+
                         `<p class="product_id" style="display: none;">${element.id}</p>`+
@@ -67,7 +67,7 @@ async function getProducts(){
                 if(element.category == 'Клей'){
                     let str = 
                     '<div class="product">'+
-                        '<div class="img"></div>'+
+                        `<img class="img" src="${element.imageURL}"></img>`+
                         `<p class="title">${element.name}</p>`+
                         `<p class="price">${element.price} р.</p>`+
                         `<p class="product_id" style="display: none;">${element.id}</p>`+
@@ -79,7 +79,7 @@ async function getProducts(){
                 if(element.category == 'Пол'){
                     let str = 
                     '<div class="product">'+
-                        '<div class="img"></div>'+
+                        `<img class="img" src="${element.imageURL}"></img>`+
                         `<p class="title">${element.name}</p>`+
                         `<p class="price">${element.price} р.</p>`+
                         `<p class="product_id" style="display: none;">${element.id}</p>`+
@@ -91,7 +91,7 @@ async function getProducts(){
                 if(element.category == 'Смеси'){
                     let str = 
                     '<div class="product">'+
-                        '<div class="img"></div>'+
+                        `<img class="img" src="${element.imageURL}"></img>`+
                         `<p class="title">${element.name}</p>`+
                         `<p class="price">${element.price} р.</p>`+
                         `<p class="product_id" style="display: none;">${element.id}</p>`+
