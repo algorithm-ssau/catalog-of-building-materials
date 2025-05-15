@@ -68,11 +68,9 @@ async function displayUserData() {
             e.currentTarget.querySelector('.button__text').innerHTML = 'Добавлено';
             e.currentTarget.onclick = null;
         }
-        
-      
     } else {
       const dataContainer = document.getElementById('dataContainer');
-      dataContainer.innerHTML = '<p>Не удалось загрузить данные.</p>';
+      dataContainer.innerHTML = '<p>Не удалось загрузить данные. Пусто</p>';
     }
   }
 
