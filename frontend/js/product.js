@@ -58,11 +58,9 @@ async function displayUserData() {
             }
             else{
               array = JSON.parse(localStorage.getItem('cart'));
-              let flag = false;
-              array.forEach(elem=>{
-                if(elem == productId) flag = true;
-              });
-              if(!flag) array.push(productId);
+              if (!array.includes(productId)) {
+                array.push(productId);
+              }
               localStorage.setItem('cart', JSON.stringify(array));
             }
             e.currentTarget.querySelector('.button__text').innerHTML = 'Добавлено';
