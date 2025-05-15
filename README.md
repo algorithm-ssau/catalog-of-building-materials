@@ -14,11 +14,11 @@
 
 ## Участники
 Проект разработан студентами Самарского национального исследовательского университета группы 6303-020302D:
-- Красюк Артём Михайлович (artem.krasyuk2004@gmail.com) - ArtyomKrasyuk
-- Сгибнев Владимир Сергеевич (svs050705@gmail.com) - Zeredan
-- Алексашин Алексей Сергеевич (aleksashin990@gmail.com) - xHlpNw
-- Архипова Дарья Андреевна (teoriabigvzr@gmail.com) - DariaA-a
-- Петрова Ульяна Алексеевна (ulyana.petrova657@gmail.com) - ulyananana8
+- Красюк Артём Максимович (artem.krasyuk2004@gmail.com) - [ArtyomKrasyuk](https://github.com/ArtyomKrasyuk)
+- Сгибнев Владимир Сергеевич (svs050705@gmail.com) - [Zeredan](https://github.com/Zeredan)
+- Алексашин Алексей Сергеевич (aleksashin990@gmail.com) - [xHlpNw](https://github.com/xHlpNw)
+- Архипова Дарья Андреевна (teoriabigvzr@gmail.com) - [DariaA-a](https://github.com/DariaA-a)
+- Петрова Ульяна Алексеевна (ulyana.petrova657@gmail.com) - [ulyananana8](https://github.com/ulyananana8)
 
 ## Технологии
 - Frontend: HTML, CSS
@@ -27,17 +27,66 @@
 - База данных: PostgreSQL
 
 ## Установка
-1. Клонируйте репо:
+Инструкция для Linux, так как проект разрабатывался на этой ОС. Для других систем команды могут отличаться.
+
+1. Убедитесь, что установлены Docker и Python 3.
+2. Клонируйте репозиторий:
    ```bash
    git clone https://github.com/algorithm-ssau/catalog-of-building-materials.git
    cd catalog-of-building-materials
    ```
-2. Установите зависимости:
+3. Перейдите в директорию `backend`:
    ```bash
-   pip install -r requirements.txt  # для Python
-   mvn install  # для Spring Boot
+   cd backend
    ```
+4. Соберите Docker-образ:
+   ```bash
+   sudo docker build -t catalog .
+   ```
+5. Запустите контейнеры:
+   ```bash
+   sudo docker compose up -d
+   ```
+6. Перейдите в директорию `python-api`:
+   ```bash
+   cd ../python-api
+   ```
+7. Создайте виртуальное окружение:
+   ```bash
+   python3 -m venv venv
+   ```
+8. Активируйте окружение:
+   ```bash
+   source venv/bin/activate
+   ```
+9. Установите зависимости:
+   ```bash
+   pip install -r requirements.txt
+   ```
+10. Перейдите в директорию `app`:
+    ```bash
+    cd app
+    ```
+11. Запустите FastAPI сервер:
+    ```bash
+    uvicorn main:app --host 0.0.0.0 --port 8000
+    ```
+12. Вернитесь в корневую директорию и откройте `frontend`:
+    ```bash
+    cd ../../frontend
+    ```
+13. Откройте файл `zaglav.html` в браузере — это главная страница сайта.
 
+
+## Использование
+1. После выполнения шагов установки сервер (FastAPI) должен быть доступен по адресу `http://localhost:8000`.
+2. Откройте `frontend/zaglav.html` в браузере для доступа к интерфейсу.
+3. Переходите по страницам:
+   - **Главная**: обзор магазина, ссылки на каталог и корзину.
+   - **Каталог**: фильтры по категориям товаров.
+   - **Карточка товара**: описание, характеристики, добавление в корзину.
+   - **Корзина**: оформление заказа, доступ к мини-игре.
+4. Для мини-игры: в корзине нажмите "Собери стену" и получите промокод.
 
 ## Лицензия
 Этот проект создан в рамках учебного проекта. Распространяется свободно.
